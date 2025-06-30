@@ -679,7 +679,11 @@ class Concat(nn.Module):
         Returns:
             (torch.Tensor): Concatenated tensor.
         """
-        return torch.cat(x, self.d)
+        if isinstance(x, (tuple, list)):
+            return torch.cat(x, self.d)
+        else:
+            return x
+
 
 
 class Index(nn.Module):
